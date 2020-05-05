@@ -17,7 +17,7 @@ func main() {
 		CountryDBPath string   `short:"f" long:"country-db" description:"Path to GeoIP country database" value-name:"FILE" default:""`
 		CityDBPath    string   `short:"c" long:"city-db" description:"Path to GeoIP city database" value-name:"FILE" default:""`
 		ASNDBPath     string   `short:"a" long:"asn-db" description:"Path to GeoIP ASN database" value-name:"FILE" default:""`
-		Listen        string   `short:"l" long:"listen" description:"Listening address" value-name:"ADDR" default:":8080"`
+		Listen        string   `short:"l" long:"listen" description:"Listening address" value-name:"ADDR" default:":80"`
 		ReverseLookup bool     `short:"r" long:"reverse-lookup" description:"Perform reverse hostname lookups"`
 		PortLookup    bool     `short:"p" long:"port-lookup" description:"Enable port lookup"`
 		Template      string   `short:"t" long:"template" description:"Path to template" default:"index.html" value-name:"FILE"`
@@ -55,8 +55,8 @@ func main() {
 	}
 
 	listen := opts.Listen
-	if listen == ":8080" {
-		listen = "0.0.0.0:8080"
+	if listen == ":80" {
+		listen = "0.0.0.0:80"
 	}
 	log.Printf("Listening on http://%s", listen)
 	if err := server.ListenAndServe(opts.Listen); err != nil {
